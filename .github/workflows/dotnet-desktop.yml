@@ -23,6 +23,7 @@ jobs:
           8.0.x
           
         cache: true
+        cache-dependency-path: '**/*.csproj'
 
     - name: Restore dependencies
       run: dotnet restore
