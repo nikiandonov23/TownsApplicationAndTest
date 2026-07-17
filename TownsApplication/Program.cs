@@ -21,13 +21,18 @@ namespace TownsApplication
                 Console.WriteLine("5. Exit");
 
                 Console.Write("Enter your choice: ");
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
 
                 switch (choice)
                 {
                     case "1":
                         Console.Write("Enter Town Name: ");
-                        string townName = Console.ReadLine();
+                        string? townName = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(townName))
+                        {
+                            Console.WriteLine("Town name cannot be empty.");
+                            break;
+                        }
                         Console.Write("Enter Population: ");
                         if (int.TryParse(Console.ReadLine(), out int population))
                         {
