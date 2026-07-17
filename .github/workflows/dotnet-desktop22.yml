@@ -32,3 +32,30 @@ jobs:
 
     - name: Build and Execute unit tests
       run: dotnet test --configuration Release --no-restore
+      
+  deploy:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+          
+        cache: true
+        cache-dependency-path: '**/*.csproj'
+
+    - name: Publish the application
+      run: dotnet publish --configuration Release --no-restore --output ./publish
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: published-app
+    
