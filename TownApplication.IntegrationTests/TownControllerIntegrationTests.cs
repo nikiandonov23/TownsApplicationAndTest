@@ -71,7 +71,7 @@
 
             // Assert
             // Check that there is only one town with the specified name
-            Assert.Equal(1, _controller.ListTowns().Count);
+            Assert.Single(_controller.ListTowns());
         }
 
         [Fact]
